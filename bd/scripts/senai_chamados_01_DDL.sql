@@ -1,11 +1,11 @@
 -- DDL
 
 -- Cria o banco de dados nomeado Gufi_manha
-CREATE DATABASE Gufi_manha;
+CREATE DATABASE sis_Chamados;
 GO
 
 -- Define o banco de dados que será utilizado
-USE Gufi_manha;
+USE sis_Chamados;
 GO
 
 -- Cria a tabela tiposUsuarios
@@ -38,7 +38,7 @@ CREATE TABLE instituicoes
 GO
 
 -- Cria a tabela tiposEventos
-CREATE TABLE tiposEventos
+CREATE TABLE tiposChamados
 (
 	idTipoEvento		INT PRIMARY KEY IDENTITY
 	,tituloTipoEvento	VARCHAR(200) UNIQUE NOT NULL
@@ -46,14 +46,14 @@ CREATE TABLE tiposEventos
 GO
 
 -- Cria a tabela eventos
-CREATE TABLE eventos
+CREATE TABLE chamados
 (
-	idEvento		INT PRIMARY KEY IDENTITY
-	,idTipoEvento	INT FOREIGN KEY REFERENCES tiposEventos(idTipoEvento)
+	idChamado		INT PRIMARY KEY IDENTITY
+	,idTipoChamado	INT FOREIGN KEY REFERENCES tiposChamado(idTipoChamado)
 	,idInstituicao	INT FOREIGN KEY REFERENCES instituicoes(idInstituicao)
-	,nomeEvento		VARCHAR(250) NOT NULL
+	,nomeChamado		VARCHAR(250) NOT NULL
 	,acessoLivre	BIT DEFAULT (1)
-	,dataEvento		DATE NOT NULL
+	,dataChamado			DATE NOT NULL
 	,descricao		VARCHAR(255)
 );
 GO
