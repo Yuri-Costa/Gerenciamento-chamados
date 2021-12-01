@@ -19,19 +19,19 @@ export default class Eventos extends Component {
             descricao : '',
             dataEvento : new Date(),
             acessoLivre : 0,
-            idTipoEvento : 0,
+            idTipoChamado : 0,
             idInstituicao : 0,
-            listaTiposEventos : [],
+            listaTiposChamados : [],
             listaInstituicoes : [],
-            listaEventos : [],
+            listaTiposChamados : [],
             isLoading : false
         }
     };
 
     // Função responsável por fazer a requisição e trazer a lista de tipos eventos
-    buscarTiposEventos = () => {
+    buscarTiposChamados = () => {
         // Faz a chamada para a API usando o axios
-        axios('http://localhost:5000/api/tiposeventos', {
+        axios('http://localhost:5000/api/tiposchamadoss', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -40,9 +40,9 @@ export default class Eventos extends Component {
             // Caso a requisição retorne um status code 200
             if (resposta.status === 200) {
                 // atualiza o state listaTiposEventos com os dados obtidos
-                this.setState({ listaTiposEventos : resposta.data })
+                this.setState({ listaTiposChamados : resposta.data })
                 // e mostra no console do navegador a lista de tipos eventos
-                console.log(this.state.listaTiposEventos)
+                console.log(this.state.listaTiposChamados)
             }
         })
         // Caso ocorra algum erro, mostra no console do navegador
@@ -71,9 +71,9 @@ export default class Eventos extends Component {
     };
 
     // Função responsável por fazer a requisição e trazer a lista de eventos
-    buscarEventos = () => {
+    buscarChamados = () => {
         // Faz a chamada para a API usando o axios
-        axios('http://localhost:5000/api/eventos', {
+        axios('http://localhost:5000/api/Chamados', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -82,9 +82,9 @@ export default class Eventos extends Component {
             // Caso a requisição retorne um status code 200
             if (resposta.status === 200) {
                 // atualiza o state listaEventos com os dados obtidos
-                this.setState({ listaEventos : resposta.data })
+                this.setState({ listaChamados : resposta.data })
                 // e mostra no console do navegador a lista de eventos
-                console.log(this.state.listaEventos)
+                console.log(this.state.listaChamados)
             }
         })
         // Caso ocorra algum erro, mostra no console do navegador
@@ -93,13 +93,13 @@ export default class Eventos extends Component {
 
     // Chama as funções assim que a tela é renderizada
     componentDidMount(){
-        this.buscarTiposEventos();
+        this.buscarTiposChamados();
         this.buscarInstituicoes();
-        this.buscarEventos();
+        this.buscarChamados();
     };
 
     // Função que faz a chamada para a API para cadastrar um evento
-    cadastrarEvento = (event) => {
+    cadastrarChamado = (event) => {
         // Ignora o comportamento padrão do navegador
         event.preventDefault();
         // Define que a requisição está em andamento
@@ -108,12 +108,12 @@ export default class Eventos extends Component {
         // Define um evento que recebe os dados do state
         // É necessário converter o acessoLivre para int, para que o back-end consiga converter para bool ao cadastrar
         // Como o navegador envia o dado como string, não é possível converter para bool implicitamente
-        let evento = {
-            nomeEvento : this.state.titulo,
+        let Chamado = {
+            nomeChamado : this.state.titulo,
             descricao : this.state.descricao,
-            dataEvento : new Date( this.state.dataEvento ),
+            dataChamado : new Date( this.state.dataChamado ),
             acessoLivre : parseInt( this.state.acessoLivre ),
-            idTipoEvento : this.state.idTipoEvento,
+            idTipoChamado : this.state.idTipoChamado,
             idInstituicao : this.state.idInstituicao
         };
 
@@ -129,7 +129,7 @@ export default class Eventos extends Component {
             // Caso retorne status code 200,
             if (resposta.status === 201) {
                 // exibe no console do navegador a mensagem abaixo
-                console.log('Evento cadastrado!')
+                console.log('Chamados feito!')
                 // e define que a requisição terminou
                 this.setState({ isLoading : false })
             }
@@ -144,7 +144,7 @@ export default class Eventos extends Component {
 
         // Então, atualiza a lista de Eventos
         // sem o usuário precisar executar outra ação
-        .then(this.buscarEventos)
+        .then(this.buscarChamados)
     };
 
     // Função genérica que atualiza o state de acordo com o input

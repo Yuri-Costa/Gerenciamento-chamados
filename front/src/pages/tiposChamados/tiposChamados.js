@@ -10,18 +10,18 @@ import logo from "../../assets/img/logo.png";
 import Rodape from '../../components/rodape/rodape';
 import Titulo from '../../components/titulo/titulo';
 
-class TiposEventos extends Component{
+class TiposChamados extends Component{
     constructor(props){
         super(props);
         this.state = {
-            listaTiposEventos : [],
+            listaTiposChamados : [],
             titulo : '',
-            idTipoEventoAlterado : 0
+            idTipoChamadoAlterado : 0
         }
     }
 
     // Função responsável por fazer a requisição e trazer a lista de tipos eventos
-    buscarTiposEventos = () => {
+    buscarTiposChamados = () => {
         console.log('agora vamos fazer a chamada para API para atualizar a lista');
 
         // Faz a chamada para a API usando o fetch
@@ -58,7 +58,7 @@ class TiposEventos extends Component{
         })
         
         // e atualiza o state listaTiposEventos com os dados obtidos
-        .then(resposta => this.setState({ listaTiposEventos : resposta }))
+        .then(resposta => this.setState({ listaTiposChamados : resposta }))
         // .then(data => console.log(data))
         
         // Caso ocorra algum erro, mostra no console do navegador
@@ -67,7 +67,7 @@ class TiposEventos extends Component{
 
     // Chama a função buscarTiposEventos() assim que o componente é renderizado
     componentDidMount(){
-        this.buscarTiposEventos();
+        this.buscarTiposChamados();
     }
 
     // Atualiza o state titulo com o valor do input
@@ -77,21 +77,21 @@ class TiposEventos extends Component{
     };
 
     // Função responsável por cadastrar um Tipo de Evento
-    cadastrarTipoEvento = (event) => {
+    cadastrarTipoChamado = (event) => {
         // Ignora o comportamento padrão do navegador
         event.preventDefault();
 
         // Caso algum Tipo de Evento seja selecionado para edição,
         if (this.state.idTipoEventoAlterado !== 0) {
             // faz a chamada para a API usando fetch e passando o ID do Tipo de Evento que será atualizado na URL da requisição
-            fetch('http://localhost:5000/api/tiposeventos/' + this.state.idTipoEventoAlterado,
+            fetch('http://localhost:5000/api/tiposchamados/' + this.state.idTipoChamadoAlterado,
             {
                 // Define o método da requisição ( PUT )
                 method : 'PUT',
 
                 // Define o corpo da requisição especificando o tipo ( JSON )
                 body : JSON.stringify({
-                    tituloTipoEvento : this.state.titulo
+                    tituloTipoChamado : this.state.titulo
                 }),
 
                 // Define o cabeçalho da requisição
@@ -106,7 +106,7 @@ class TiposEventos extends Component{
                 if (resposta.status === 204) {
                     console.log(
                         // Exibe no console do navegador a mensagem 'Tipo de Evento x atualizado!', onde x é o ID do Tipo de Evento atualizado
-                        'Tipo de Evento ' + this.state.idTipoEventoAlterado + ' atualizado!',
+                        'Tipo de Chamado ' + this.state.idTipoChamadoAlterado + ' atualizado!',
                         // e informa qual é seu novo título
                         'Seu novo título agora é: ' + this.state.titulo
                     );
@@ -115,7 +115,7 @@ class TiposEventos extends Component{
 
             // Então, atualiza a lista de Tipos de Eventos
             // sem o usuário precisar executar outra ação
-            .then(this.buscarTiposEventos)
+            .then(this.buscarTiposChamados)
 
             // Faz a chamada para a função limparCampos()
             .then(this.limparCampos)
@@ -124,14 +124,14 @@ class TiposEventos extends Component{
         // Caso nenhum Tipo de Evento tenha sido selecionado para editar, realiza o cadastro com a requisição abaixo
         else {
             // Faz a chamada para a API usando fetch
-            fetch('http://localhost:5000/api/tiposeventos',
+            fetch('http://localhost:5000/api/tiposchamados',
             {
                 // Define o método da requisição ( POST )
                 method : 'POST',
 
                 // Define o corpo da requisição especificando o tipo ( JSON )
                 // Em outras palavras, converte o state para uma string JSON
-                body : JSON.stringify({ tituloTipoEvento : this.state.titulo }),
+                body : JSON.stringify({ tituloTipoChamado : this.state.titulo }),
 
                 // Define o cabeçalho da requisição
                 headers : {
@@ -149,7 +149,7 @@ class TiposEventos extends Component{
 
             // Então, atualiza a lista de Tipos de Eventos
             // sem o usuário precisar executar outra ação
-            .then(this.buscarTiposEventos)
+            .then(this.buscarTiposChamados)
 
             // Faz a chamada para a função limparCampos()
             .then(this.limparCampos)
@@ -157,18 +157,18 @@ class TiposEventos extends Component{
     };
 
     // Recebe um tipo de evento da lista
-    buscarTipoEventoPorId = (tipoEvento) => {
+    buscarTipoEventoPorId = (tipoChamado) => {
         this.setState({
             // Atualiza o state idTipoEventoAlterado com o valor do ID do Tipo de Evento recebido
-            idTipoEventoAlterado : tipoEvento.idTipoEvento,
+            idTipoChamadoAlterado : tipoChamado.idTipoChamado,
             // e o state titulo com o valor do titulo do Tipo de Evento recebido
-            titulo : tipoEvento.tituloTipoEvento
+            titulo : tipoChamado.tituloTipoChamado
         }, () => {
             console.log(
                 // Exibe no console do navegador o valor do ID do Tipo de Evento recebido
-                'O Tipo de Evento ' + tipoEvento.idTipoEvento + ' foi selecionado, ',
+                'O Tipo de Evento ' + tipoChamado.idTipoChamado + ' foi selecionado, ',
                 // o valor do state idTipoEventoAlterado
-                'agora o valor do state idTipoEventoAlterado é: ' + this.state.idTipoEventoAlterado,
+                'agora o valor do state idTipoChamadoAlterado é: ' + this.state.idTipoChamadoAlterado,
                 // e o valor do state titulo
                 'e o valor do state titulo é: ' + this.state.titulo
             );
@@ -176,12 +176,12 @@ class TiposEventos extends Component{
     };
 
     // Função responsável por excluir um Tipo de Evento
-    excluirTipoEvento = (tipoEvento) => {
+    excluirTipoChamado = (tipoChamado) => {
         // Exibe no console do navegador o ID do Tipo de Evento recebido
-        console.log('O Tipo de Evento ' + tipoEvento.idTipoEvento + ' foi selecionado')
+        console.log('O Tipo de Chamado ' + tipoChamado.idTipoEvento + ' foi selecionado')
 
         // Faz a chamada para a API usando fetch passando o ID do Tipo de Evento recebido na URL da requisição
-        fetch('http://localhost:5000/api/tiposeventos/' + tipoEvento.idTipoEvento,
+        fetch('http://localhost:5000/api/tiposchamado/' + tipoChamado.idTipoChamado,
         {
             // Define o método da requisição ( DELETE )
             method : 'DELETE',
@@ -196,7 +196,7 @@ class TiposEventos extends Component{
         .then(resposta => {
             if (resposta.status === 204) {
                 // Exibe no console do navegador a mensagem 'Tipo de Evento x excluído!' onde x é o ID do Tipo de Evento excluído
-                console.log('Tipo de Evento ' + tipoEvento.idTipoEvento + ' excluído!')
+                console.log('Tipo de Chamado ' + tipoChamado.idTipoChamado + ' excluído!')
             };
         })
 
@@ -205,7 +205,7 @@ class TiposEventos extends Component{
 
         // Então, atualiza a lista de Tipos de Eventos
         // sem o usuário precisar executar outra ação
-        .then(this.buscarTiposEventos)
+        .then(this.buscarTiposChamado)
     }
 
     // Reseta os states titulo e idTipoEventoAlterado
@@ -247,17 +247,17 @@ class TiposEventos extends Component{
 
                                 <tbody id="tabela-lista-corpo">
                                     {
-                                        this.state.listaTiposEventos.map( (tipoEvento) => {
+                                        this.state.listaTiposChamados.map( (tipoChamado) => {
                                             return (
-                                                <tr key={tipoEvento.idTipoEvento}>
-                                                    <td>{tipoEvento.idTipoEvento}</td>
-                                                    <td>{tipoEvento.tituloTipoEvento}</td>
+                                                <tr key={tipoChamado.idTipoChamado}>
+                                                    <td>{tipoChamado.idTipoChamado}</td>
+                                                    <td>{tipoChamado.tituloTipoChamado}</td>
 
                                                     {/* Faz a chamada da função buscarTipoEventoPorId passando o Tipo de Evento selecionado  */}
-                                                    <td><button onClick={() => this.buscarTipoEventoPorId(tipoEvento)} >Editar</button>
+                                                    <td><button onClick={() => this.buscarTipoEventoPorId(tipoChamado)} >Editar</button>
 
                                                     {/* Faz a chamada da função excluirTipoEvento passando o Tipo de Evento selecionado  */}
-                                                    <button onClick={() => this.excluirTipoEvento(tipoEvento)} >Excluir</button></td>
+                                                    <button onClick={() => this.excluirTipoEvento(tipoChamado)} >Excluir</button></td>
                                                 </tr>
                                             );
                                         } )
@@ -273,14 +273,14 @@ class TiposEventos extends Component{
                         {/* <h2 className="conteudoPrincipal-cadastro-titulo">Cadastro de Tipo de Evento</h2> */}
 
                         {/* Formulário de cadastro de Tipo de Evento */}
-                        <form onSubmit={this.cadastrarTipoEvento}>
+                        <form onSubmit={this.cadastrarTipoChamado}>
                             <div className="container">
                                 <input 
                                     type="text"
                                     id="nome-tipo-evento"
                                     value={this.state.titulo}
                                     onChange={this.atualizaEstadoTitulo}
-                                    placeholder="Título do Tipo de Evento"
+                                    placeholder="Título do Tipo de Chamado"
                                 />
 
                                 {/* Altera o texto do botão de acordo com a operação ( edição ou cadastro ) usando if ternário */}
@@ -295,7 +295,7 @@ class TiposEventos extends Component{
 
                                 {
                                     <button className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro" type="submit" disabled={this.state.titulo === '' ? 'none' : ''} >
-                                        {this.state.idTipoEventoAlterado === 0 ? 'Cadastrar' : 'Atualizar'}
+                                        {this.state.idTipoChamadoAlterado === 0 ? 'Cadastrar' : 'Atualizar'}
                                     </button>
                                 }
 
@@ -311,9 +311,9 @@ class TiposEventos extends Component{
                                 */}
 
                                 {
-                                    this.state.idTipoEventoAlterado !== 0 &&
+                                    this.state.idTipoChamadoAlterado !== 0 &&
                                     <div>
-                                        <p>O tipo de evento <strong>{this.state.idTipoEventoAlterado}</strong> está sendo editado </p>
+                                        <p>O tipo de Chamado <strong>{this.state.idTipoChamadoAlterado}</strong> está sendo editado </p>
                                         <p>Pressione o botão Cancelar caso queira abortar a operação antes de cadastrar um novo tipo de evento</p>
                                     </div>
                                 }
@@ -329,4 +329,4 @@ class TiposEventos extends Component{
     }
 }
 
-export default TiposEventos;
+export default TiposChamados;

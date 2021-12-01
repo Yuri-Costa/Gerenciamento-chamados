@@ -7,8 +7,8 @@ import './index.css';
 
 import App from './pages/home/App';
 import TiposUsuarios from './pages/tiposUsuarios/tiposUsuarios';
-import TiposEventos from './pages/tiposEventos/tiposEventos';
-import Eventos from './pages/eventos/eventos';
+import TiposChamados from './pages/tiposEventos/tiposEventos';
+import Chamados from './pages/eventos/eventos';
 import Login from './pages/login/login';
 import NotFound from './pages/notFound/notFound';
 
@@ -47,8 +47,8 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} /> {/* Home */}
         <Route path="/login" component={Login} /> {/* Login */}
-        <PermissaoAdm path="/tiposusuarios" component={TiposUsuarios} /> {/* Tipos Eventos */}
-        <PermissaoAdm path="/tiposeventos" component={TiposEventos} /> {/* Tipos Eventos */}
+        <PermissaoAdm path="/tiposchamados" component={TiposUsuarios} /> {/* Tipos Eventos */}
+        <PermissaoAdm path="/tiposchamados" component={TiposEventos} /> {/* Tipos Eventos */}
         <Route path="/eventos" component={Eventos} /> {/* Eventos */}
         <Route exact path="/notfound" component={NotFound} /> {/* Not Found */}
         <Redirect to = "/notfound"/> {/* Redireciona para NotFound caso não encontre nenhuma rota */}
