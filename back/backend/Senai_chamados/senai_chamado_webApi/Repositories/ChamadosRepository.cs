@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace senai_gufi_webApi.Repositories
+namespace senai_chamado_webApi.Repositories
 {
     /// <summary>
     /// Classe responsável pelo repositório dos Chamados
     /// </summary>
-    public class ChamadosRepository : IEventoRepository
+    public class ChamadosRepository : IChamadoRepository
     {
         /// <summary>
         /// Objeto contexto por onde serão chamados os métodos do EF Core
@@ -19,89 +19,89 @@ namespace senai_gufi_webApi.Repositories
         ChamadosContext ctx = new ChamadosContext();
 
         /// <summary>
-        /// Atualiza um evento existente
+        /// Atualiza um Chamado existente
         /// </summary>
-        /// <param name="id">ID do evento que será atualizado</param>
-        /// <param name="chamadosAtualizado">Objeto com as novas informações</param>
-        public void Atualizar(int id, Chamados chamadosAtualizado)
+        /// <param name="id">ID do Chamado que será atualizado</param>
+        /// <param name="ChamadoAtualizado">Objeto com as novas informações</param>
+        public void Atualizar(int id, Chamados ChamadoAtualizado)
         {
             // Busca um evento através do id
-            Evento chamadosBuscado = ctx.Eventos.Find(id);
+            Evento ChamadoBuscado = ctx.Chamados.Find(id);
 
             // Verifica se o nome do evento foi informado
             if (chamadoAtualizado.NomeChamado != null)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.NomeChamado = chamadoAtualizado.NomeChamado;
+                ChamadoBuscado.NomeChamado = ChamadoAtualizado.NomeChamado;
             }
 
-            // Verifica se o tipo do evento foi informado
-            if (chamadoAtualizado.IdTipoChamado != null)
+            // Verifica se o tipo do Chamado foi informado
+            if (ChamadoAtualizado.IdTipoChamado != null)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.IdTipoChamado = chamadoAtualizado.IdTipoChamado;
+                ChamadoBuscado.IdTipoChamado = ChamadoAtualizado.IdTipoChamado;
             }
 
-            // Verifica se o tipo do evento foi informado
-            if (chamadoAtualizado.IdTipoChamado > 0)
+            // Verifica se o tipo do Chamado foi informado
+            if (ChamadoAtualizado.IdTipoChamado > 0)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.IdTipoChamado = chamadoAtualizado.IdTipoChamado;
+                ChamadoBuscado.IdTipoChamado = ChamadoAtualizado.IdTipoChamado;
             }
 
             // Verifica se a privacidade do evento foi informada
-            if (chamadoAtualizado.AcessoLivre == true || chamadoAtualizado.AcessoLivre == false)
+            if (ChamadoAtualizado.AcessoLivre == true || ChamadoAtualizado.AcessoLivre == false)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.AcessoLivre = chamadoAtualizado.AcessoLivre;
+               ChamadoBuscado.AcessoLivre = ChamadoAtualizado.AcessoLivre;
             }
 
-            // Verifica se a instituição do evento foi informada
-            if (chamadoAtualizado.IdInstituicao > 0)
+            // Verifica se a instituição do Chamado foi informada
+            if (ChamadoAtualizado.IdInstituicao > 0)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.IdInstituicao = chamadoAtualizado.IdInstituicao;
+                ChamadoBuscado.IdInstituicao = ChamadoAtualizado.IdInstituicao;
             }
 
             // Verifica se a descrição do evento foi informada
-            if (chamadoAtualizado.Descricao != null)
+            if (ChamadoAtualizado.Descricao != null)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.Descricao = chamadoAtualizado.Descricao;
+               ChamadoBuscado.Descricao = ChamadoAtualizado.Descricao;
             }
 
             // Verifica se a data do evento é superior ou igual à data de hoje
-            if (chamadoAtualizado.DataEvento >= DateTime.Today)
+            if (ChamadoAtualizado.DataChamado >= DateTime.Today)
             {
                 // Atribui os novos valores ao campos existentes
-                chamadoBuscado.DataEvento = chamadoAtualizado.DataChamado;
+                ChamadoBuscado.DataEvento = ChamadoAtualizado.DataChamado;
             }
 
-            // Atualiza o evento que foi buscado
-            ctx.Chamado.Update(chamadoBuscado);
+            // Atualiza o Chamado que foi buscado
+            ctx.Chamado.Update(ChamadoBuscado);
 
             // Salva as informações para serem gravadas no banco
             ctx.SaveChanges();
         }
 
         /// <summary>
-        /// Busca um evento através do ID
+        /// Busca um Chamado através do ID
         /// </summary>
-        /// <param name="id">ID do evento que será buscado</param>
-        /// <returns>Um evento buscado</returns>
+        /// <param name="id">ID do Chamado que será buscado</param>
+        /// <returns>Um Chamado buscado</returns>
         public Chamados BuscarPorId(int id)
         {
-            // Retorna o primeiro evento encontrado para o ID informado
-            return ctx.ChamadoS.FirstOrDefault(e => e.Idchamado == id);
+            // Retorna o primeiro Chamado encontrado para o ID informado
+            return ctx.Chamado.FirstOrDefault(e => e.Idchamado == id);
         }
 
         /// <summary>
-        /// Cadastra um novo evento
+        /// Cadastra um novo Chamado
         /// </summary>
-        /// <param name="novoChamado">Objeto novoEvento que será cadastrado</param>
+        /// <param name="novoChamado">Objeto novoChamado que será cadastrado</param>
         public void Cadastrar(Chamado novoChamado)
         {
-            // Adiciona este novoEvento
+            // Adiciona este novoChamado
             ctx.Chamado.Add(novoChamado);
 
             // Salva as informações para serem gravadas no banco de dados
@@ -109,12 +109,12 @@ namespace senai_gufi_webApi.Repositories
         }
 
         /// <summary>
-        /// Deleta um evento existente
+        /// Deleta um Chamado existente
         /// </summary>
-        /// <param name="id">ID do evento que será deletado</param>
+        /// <param name="id">ID do Chamado que será deletado</param>
         public void Deletar(int id)
         {
-            // Remove o evento que foi buscado
+            // Remove o Chamado que foi buscado
             ctx.Chamado.Remove(BuscarPorId(id));
 
             // Salva as alterações
@@ -122,14 +122,14 @@ namespace senai_gufi_webApi.Repositories
         }
 
         /// <summary>
-        /// Lista todos os eventos
+        /// Lista todos os Chamados
         /// </summary>
-        /// <returns>Uma lista de eventos</returns>
+        /// <returns>Uma lista de Chamados</returns>
         public List<Chamado> Listar()
         {
-            // Retorna uma lista com todas as informações dos eventos
+            // Retorna uma lista com todas as informações dos Chamados
             return ctx.Chamado
-                // Adiciona na busca as informações do tipo de evento
+                // Adiciona na busca as informações do tipo de Chamado
                 .Include(e => e.IdTipoChamadoNavigation)
                 // Adiciona na busca as informações da instituição
                 .Include(e => e.IdInstituicaoNavigation)

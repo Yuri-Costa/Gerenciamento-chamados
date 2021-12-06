@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace senai_gufi_webApi.Interfaces
+namespace senai_chamado_webApi.Interfaces
 {
     interface ILocalizacaoRepository
     {

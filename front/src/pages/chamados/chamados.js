@@ -28,9 +28,9 @@ export default class Eventos extends Component {
         }
     };
 
-    // Função responsável por fazer a requisição e trazer a lista de tipos eventos
+   
     buscarTiposChamados = () => {
-        // Faz a chamada para a API usando o axios
+        
         axios('http://localhost:5000/api/tiposchamadoss', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
@@ -41,7 +41,7 @@ export default class Eventos extends Component {
             if (resposta.status === 200) {
                 // atualiza o state listaTiposEventos com os dados obtidos
                 this.setState({ listaTiposChamados : resposta.data })
-                // e mostra no console do navegador a lista de tipos eventos
+                
                 console.log(this.state.listaTiposChamados)
             }
         })

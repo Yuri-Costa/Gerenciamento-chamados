@@ -8,7 +8,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace senai_gufi_webApi.Controllers
+namespace senai_chamadowebApi.Controllers
 {
     /// <summary>
     /// Controller responsável pelos endpoints referentes ao Login
@@ -94,8 +94,8 @@ namespace senai_gufi_webApi.Controllers
 
                 // Gera o token
                 var token = new JwtSecurityToken(
-                    issuer: "gufi.webApi",                 // emissor do token
-                    audience: "gufi.webApi",               // destinatário do token
+                    issuer: "chamado.webApi",                 // emissor do token
+                    audience: "chamado.webApi",               // destinatário do token
                     claims: claims,                        // dados definidos acima
                     expires: DateTime.Now.AddMinutes(30),  // tempo de expiração
                     signingCredentials: creds              // credenciais do token

@@ -4,7 +4,7 @@ using senai_chamado_webApi.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace senai_gufi_webApi.Repositories
+namespace senai_chamado_webApi.Repositories
 {
     /// <summary>
     /// Classe responsável pelo repositório dos tipos de usuários
@@ -14,7 +14,7 @@ namespace senai_gufi_webApi.Repositories
         /// <summary>
         /// Objeto contexto por onde serão chamados os métodos do EF Core
         /// </summary>
-        GufiContext ctx = new GufiContext();
+        ChamadoContext ctx = new ChamadoContext();
 
         /// <summary>
         /// Atualiza um tipo de usuário existente

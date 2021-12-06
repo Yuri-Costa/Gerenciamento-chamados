@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace senai_gufi_webApi.Domains
+namespace senai_chamado_webApi.Domains
 {
     /// <summary>
     /// Classe que representa a entidade (tabela) de usuários

@@ -4,10 +4,10 @@ using senai_chamado_webApi.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace senai_gufi_webApi.Repositories
+namespace senai_chamado_webApi.Repositories
 {
     /// <summary>
-    /// Classe responsável pelo repositório dos tipos de eventos
+    /// Classe responsável pelo repositório dos tipos de Chamados
     /// </summary>
     public class TiposChamadoRepository : ITiposChamadoRepository
     {
@@ -19,9 +19,9 @@ namespace senai_gufi_webApi.Repositories
         /// <summary>
         /// Atualiza um tipo de evento existente
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será atualizado</param>
+        /// <param name="id">ID do tipo de Chamado que será atualizado</param>
         /// <param name="tipoChamadoAtualizado">Objeto com as novas informações</param>
-        public void Atualizar(int id, TiposEvento tipoEventoAtualizado)
+        public void Atualizar(int id, TiposChamado tipoEventoAtualizado)
         {
             // Busca um tipo de evento através do id
             TiposChamado tipoChamadoBuscado = ctx.TiposChamado.Find(id);
@@ -43,21 +43,21 @@ namespace senai_gufi_webApi.Repositories
         /// <summary>
         /// Busca um tipo de evento através do ID
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será buscado</param>
-        /// <returns>Um tipo de evento buscado</returns>
+        /// <param name="id">ID do tipo de Chamado que será buscado</param>
+        /// <returns>Um tipo de Chamado buscado</returns>
         public TiposChamado BuscarPorId(int id)
         {
-            // Retorna o primeiro tipo de evento encontrado para o ID informado
+            // Retorna o primeiro tipo de Chamado encontrado para o ID informado
             return ctx.TiposChamados.FirstOrDefault(te => te.IdTipoChamado == id);
         }
 
         /// <summary>
-        /// Cadastra um novo tipo de evento
+        /// Cadastra um novo tipo de Chamado
         /// </summary>
-        /// <param name="novoTipoChamado">Objeto novoTipoEvento que será cadastrado</param>
-        public void Cadastrar(TiposEvento novoTipoChamado)
+        /// <param name="novoTipoChamado">Objeto novoTipoChamadoque será cadastrado</param>
+        public void Cadastrar(TiposChamado novoTipoChamado)
         {
-            // Adiciona este novoTipoEvento
+            // Adiciona este novoTipoChamado
             ctx.TiposChamado.Add(novoTipoChamado);
 
             // Salva as informações para serem gravadas no banco de dados
@@ -65,15 +65,15 @@ namespace senai_gufi_webApi.Repositories
         }
 
         /// <summary>
-        /// Deleta um tipo de evento existente
+        /// Deleta um tipo de Chamado existente
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será deletado</param>
+        /// <param name="id">ID do tipo de Chamado que será deletado</param>
         public void Deletar(int id)
         {
-            // Busca um tipo de evento através do id
+            // Busca um tipo de Chamado através do id
             TiposChamado tipoChamadoBuscado = ctx.TiposChamado.Find(id);
 
-            // Remove o tipo de evento que foi buscado
+            // Remove o tipo de Chamado que foi buscado
             ctx.TiposChamado.Remove(tipoChamadoBuscado);
 
             // Salva as alterações
@@ -81,12 +81,12 @@ namespace senai_gufi_webApi.Repositories
         }
 
         /// <summary>
-        /// Lista todos os tipos de eventos
+        /// Lista todos os tipos de Chamados
         /// </summary>
-        /// <returns>Uma lista de tipos de eventos</returns>
+        /// <returns>Uma lista de tipos de Chamados</returns>
         public List<TiposChamado> Listar()
         {
-            // Retorna uma lista com todas as informações dos tipos de eventos
+            // Retorna uma lista com todas as informações dos tipos de Chamados
             return ctx.TiposChamados.ToList();
         }
     }

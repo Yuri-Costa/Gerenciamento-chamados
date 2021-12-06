@@ -14,7 +14,7 @@ namespace senai_chamado_webApi.Repositories
         /// <summary>
         /// Objeto contexto por onde serão chamados os métodos do EF Core
         /// </summary>
-        GufiContext ctx = new GufiContext();
+        ChamadoContext ctx = new ChamadoContext();
 
         /// <summary>
         /// Atualiza um usuário existente

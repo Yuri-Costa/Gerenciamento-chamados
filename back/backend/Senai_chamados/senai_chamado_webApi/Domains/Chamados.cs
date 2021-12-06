@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace senai_gufi_webApi.Domains
+namespace senai_chamado_webApi.Domains
 {
     /// <summary>
     /// Classe que representa a entidade (tabela) de eventos
     /// </summary>
-    public partial class Evento
+    public partial class Chamado
     {
-        public Evento()
+        public Chamado()
         {
             Presencas = new HashSet<Presenca>();
         }
@@ -21,20 +21,20 @@ namespace senai_gufi_webApi.Domains
         public int? IdInstituicao { get; set; }
 
         // Define que o campo é obrigatório
-        [Required(ErrorMessage = "Informe o título do evento")]
-        public string NomeEvento { get; set; }
+        [Required(ErrorMessage = "Informe o título do Chamado")]
+        public string NomeChamado { get; set; }
         public bool? AcessoLivre { get; set; }
 
         // Define que o campo é obrigatório
-        [Required(ErrorMessage = "Informe a data do evento")]
+        [Required(ErrorMessage = "Informe a data do Chamado")]
         public DateTime DataChamado { get; set; }
 
         // Define que o campo é obrigatório
-        [Required(ErrorMessage = "Informe a descrição do evento")]
+        [Required(ErrorMessage = "Informe a descrição do Chamado")]
         public string Descricao { get; set; }
 
         public virtual Instituico IdInstituicaoNavigation { get; set; }
-        public virtual TiposEvento IdTipoEventoNavigation { get; set; }
+        public virtual TiposChamado IdTipoChamadoNavigation { get; set; }
         public virtual ICollection<Presenca> Presencas { get; set; }
     }
 }

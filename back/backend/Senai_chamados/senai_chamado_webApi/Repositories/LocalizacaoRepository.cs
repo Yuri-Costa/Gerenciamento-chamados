@@ -15,7 +15,7 @@ namespace senai_chamado_webApi.Repositories
         public LocalizacaoRepository()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("gufi_tarde");
+            var database = client.GetDatabase("chamado_tarde");
             _localizacao = database.GetCollection<Localizacao>("mapas");
         }
 

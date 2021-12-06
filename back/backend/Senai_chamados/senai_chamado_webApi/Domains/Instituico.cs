@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace senai_gufi_webApi.Domains
+namespace senai_chamado_webApi.Domains
 {
     /// <summary>
     /// Classe que representa a entidade (tabela) de instituições
@@ -13,7 +13,7 @@ namespace senai_gufi_webApi.Domains
     {
         public Instituico()
         {
-            Eventos = new HashSet<Evento>();
+            Eventos = new HashSet<Chamado>();
         }
 
         public int IdInstituicao { get; set; }
@@ -30,6 +30,6 @@ namespace senai_gufi_webApi.Domains
         [Required(ErrorMessage = "Informe o endereço")]
         public string Endereco { get; set; }
 
-        public virtual ICollection<Evento> Chamados { get; set; }
+        public virtual ICollection<Chamado> Chamados { get; set; }
     }
 }

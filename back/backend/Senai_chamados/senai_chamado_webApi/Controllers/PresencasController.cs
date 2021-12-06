@@ -8,7 +8,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
-namespace senai_gufi_webApi.Controllers
+namespace senai_chamado_webApi.Controllers
 {
     /// <summary>
     /// Controller responsável pelos endpoints referentes às presenças
@@ -183,13 +183,13 @@ namespace senai_gufi_webApi.Controllers
         /// <summary>
         /// Inscreve o usuário logado em um evento
         /// </summary>
-        /// <param name="idEvento">ID do evento que o usuário irá se inscrever</param>
+        /// <param name="idChamado">ID do evento que o usuário irá se inscrever</param>
         /// <returns>Um status code 201 - Created</returns>
         /// dominio/api/presencas/inscricao/idEvento
         // Define que somente o usuário comum pode acessar o método
         [Authorize(Roles = "2")]
-        [HttpPost("inscricao/{idEvento}")]
-        public IActionResult Join(int idEvento)
+        [HttpPost("inscricao/{idChamado}")]
+        public IActionResult Join(int idChamado)
         {
             try
             {
@@ -198,7 +198,7 @@ namespace senai_gufi_webApi.Controllers
                     // Armazena na propriedade IdUsuario da presenca recebida o ID do usuário logado
                     IdUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value),
                     // Armazena na propriedade IdEvento o ID do evento recebido pela URL
-                    IdEvento = idEvento,
+                    IdChamado = idChamado,
                     // Define a situação da presença como "Não confirmada"
                     Situacao = "Não confirmada"
                 };

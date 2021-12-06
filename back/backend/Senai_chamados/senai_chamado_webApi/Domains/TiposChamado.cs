@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace senai_gufi_webApi.Domains
+namespace senai_chamado_webApi.Domains
 {
     /// <summary>
     /// Classe que representa a entidade (tabela) de tipos de eventos
@@ -20,8 +20,8 @@ namespace senai_gufi_webApi.Domains
         // Define que o campo é obrigatório
 
         [Required(ErrorMessage = "O título do tipo de chamado é obrigatório!")]
-        public string TituloTipoEvento { get; set; }
+        public string TituloTipoChamado { get; set; }
 
-        public virtual ICollection<Evento> Eventos { get; set; }
+        public virtual ICollection<Chamado> Chamado{ get; set; }
     }
 }

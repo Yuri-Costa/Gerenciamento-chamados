@@ -23,15 +23,15 @@ namespace senai_chamado_webApi.Controllers
 
     // Define que somente o administrador pode acessar os métodos
     [Authorize(Roles = "1")]
-    public class TiposEventosController : ControllerBase
+    public class TiposChamadosController : ControllerBase
     {
         /// <summary>
-        /// Objeto _tiposEventoRepository que irá receber todos os métodos definidos na interface ITiposEventoRepository
+        /// Objeto _tiposChamadoRepository que irá receber todos os métodos definidos na interface ITiposChamadoRepository
         /// </summary>
-        private ITiposEventoRepository _tiposEventoRepository { get; set; }
+        private ITiposChamadoRepository _tiposChamadoRepository { get; set; }
 
         /// <summary>
-        /// Instancia o objeto _tiposEventoRepository para que haja a referência aos métodos no repositório
+        /// Instancia o objeto _tiposChamadoRepository para que haja a referência aos métodos no repositório
         /// </summary>
         public TiposEventosController()
         {
@@ -39,16 +39,16 @@ namespace senai_chamado_webApi.Controllers
         }
 
         /// <summary>
-        /// Lista todos os tipos de eventos
+        /// Lista todos os tipos de Chamados
         /// </summary>
-        /// <returns>Uma lista de tipos de eventos e um status code 200 - Ok</returns>
+        /// <returns>Uma lista de tipos de Chamados e um status code 200 - Ok</returns>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
                 // Retorna a resposta da requisição fazendo a chamada para o método
-                return Ok(_tiposEventoRepository.Listar());
+                return Ok(_tiposChamadoRepository.Listar());
             }
             catch (Exception erro)
             {
@@ -67,7 +67,7 @@ namespace senai_chamado_webApi.Controllers
             try
             {
                 // Retora a resposta da requisição fazendo a chamada para o método
-                return Ok(_tiposEventoRepository.BuscarPorId(id));
+                return Ok(_tiposChamadoRepository.BuscarPorId(id));
             }
             catch (Exception erro)
             {
@@ -78,15 +78,15 @@ namespace senai_chamado_webApi.Controllers
         /// <summary>
         /// Cadastra um novo tipo de evento
         /// </summary>
-        /// <param name="novoTipoEvento">Objeto novoTipoEvento que será cadastrado</param>
+        /// <param name="novoTipoChamado">Objeto novoTipoEvento que será cadastrado</param>
         /// <returns>Um status code 201 - Created</returns>
         [HttpPost]
-        public IActionResult Post(TiposEvento novoTipoEvento)
+        public IActionResult Post(TiposChamado novoTipoChamado)
         {
             try
             {
                 // Faz a chamada para o método
-                _tiposEventoRepository.Cadastrar(novoTipoEvento);
+                _tiposChamadoRepository.Cadastrar(novoTipoChamado);
 
                 // Retorna um status code
                 return StatusCode(201);
@@ -101,15 +101,15 @@ namespace senai_chamado_webApi.Controllers
         /// Atualiza um tipo de evento existente
         /// </summary>
         /// <param name="id">ID do tipo de evento que será atualizado</param>
-        /// <param name="tipoEventoAtualizado">Objeto com as novas informações</param>
+        /// <param name="tipoChamadoAtualizado">Objeto com as novas informações</param>
         /// <returns>Um status code 204 - No Content</returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, TiposEvento tipoEventoAtualizado)
+        public IActionResult Put(int id, TiposChamado tipoChamadoAtualizado)
         {
             try
             {
                 // Faz a chamada para o método
-                _tiposEventoRepository.Atualizar(id, tipoEventoAtualizado);
+                _tiposChamadoRepository.Atualizar(id, tipoChamadoAtualizado);
 
                 // Retorna um status code
                 return StatusCode(204);
@@ -131,7 +131,7 @@ namespace senai_chamado_webApi.Controllers
             try
             {
                 // Faz a chamada para o método
-                _tiposEventoRepository.Deletar(id);
+                _tiposChamadoRepository.Deletar(id);
 
                 // Retorna um status code
                 return StatusCode(204);

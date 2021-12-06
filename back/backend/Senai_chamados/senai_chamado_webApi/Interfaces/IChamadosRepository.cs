@@ -4,43 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace senai_gufi_webApi.Interfaces
+namespace senai_chamado_webApi.Interfaces
 {
     /// <summary>
-    /// Interface responsável pelo EventoRepository
+    /// Interface responsável pelo ChamadoRepository
     /// </summary>
     interface IEventoRepository
     {
         /// <summary>
-        /// Lista todos os eventos
+        /// Lista todos os Chamados
         /// </summary>
         /// <returns>Uma lista de eventos</returns>
         List<Evento> Listar();
 
         /// <summary>
-        /// Busca um evento através do ID
+        /// Busca um Chamado através do ID
         /// </summary>
-        /// <param name="id">ID do evento que será buscado</param>
+        /// <param name="id">ID do Chamado que será buscado</param>
         /// <returns>Um evento buscado</returns>
-        Evento BuscarPorId(int id);
+        Chamado BuscarPorId(int id);
 
         /// <summary>
-        /// Cadastra um novo evento
+        /// Cadastra um novo Chamado
         /// </summary>
-        /// <param name="novoEvento">Objeto novoEvento que será cadastrado</param>
-        void Cadastrar(Evento novoEvento);
+        /// <param name="novoChamado">Objeto novoChamado que será cadastrado</param>
+        void Cadastrar(Chamado novoChamado);
 
         /// <summary>
-        /// Atualiza um evento existente
+        /// Atualiza um Chamado existente
         /// </summary>
-        /// <param name="id">ID do evento que será atualizado</param>
-        /// <param name="eventoAtualizado">Objeto com as novas informações</param>
-        void Atualizar(int id, Evento eventoAtualizado);
+        /// <param name="id">ID do Chamado que será atualizado</param>
+        /// <param name="ChamadoAtualizado">Objeto com as novas informações</param>
+        void Atualizar(int id, Chamado ChamadoAtualizado);
 
         /// <summary>
-        /// Deleta um evento existente
+        /// Deleta um Chamado existente
         /// </summary>
-        /// <param name="id">ID do evento que será deletado</param>
+        /// <param name="id">ID do Chamado que será deletado</param>
         void Deletar(int id);
     }
 }

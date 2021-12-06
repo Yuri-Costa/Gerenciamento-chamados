@@ -48,7 +48,7 @@ namespace senai_chamado_webApi
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gufi.webApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "chamado.webApi", Version = "v1" });
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -78,16 +78,16 @@ namespace senai_chamado_webApi
                         ValidateLifetime = true,
 
                         // forma de criptografia e a chave de autentica��o
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("gufi-chave-autenticacao")),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("chamado-chave-autenticacao")),
 
                         // verifica o tempo de expira��o do token
                         ClockSkew = TimeSpan.FromMinutes(30),
 
                         // define o nome da issuer, de onde est� vindo
-                        ValidIssuer = "gufi.webApi",
+                        ValidIssuer = "chamado.webApi",
 
                         // define o nome da audience, para onde est� indo
-                        ValidAudience = "gufi.webApi"
+                        ValidAudience = "chamado.webApi"
                     };
                 });
 
@@ -109,7 +109,7 @@ namespace senai_chamado_webApi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gufi.webApi");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chamado.webApi");
                 c.RoutePrefix = string.Empty;
             });
 

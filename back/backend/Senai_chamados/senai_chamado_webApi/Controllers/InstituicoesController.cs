@@ -5,7 +5,7 @@ using senai_chamado_webApi.Interfaces;
 using senai_chamado_webApi.Repositories;
 using System;
 
-namespace senai_gufi_webApi.Controllers
+namespace senai_chamado_webApi.Controllers
 {
     /// <summary>
     /// Controller responsável pelos endpoints (URLs) referentes às instituições
@@ -15,7 +15,7 @@ namespace senai_gufi_webApi.Controllers
     [Produces("application/json")]
 
     // Define que a rota de uma requisição será no formato dominio/api/nomeController
-    // ex: http://localhost:5000/api/tiposEventos
+    // ex: http://localhost:5000/api/tiposChamados
     [Route("api/[controller]")]
 
     // Define que é um controlador de API

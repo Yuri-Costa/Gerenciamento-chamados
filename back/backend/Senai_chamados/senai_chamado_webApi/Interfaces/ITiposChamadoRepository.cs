@@ -1,43 +1,43 @@
-﻿using senai_gufi_webApi.Domains;
+﻿using senai_chamado_webApi.Domains;
 using System.Collections.Generic;
 
-namespace senai_gufi_webApi.Interfaces
+namespace senai_chamado_webApi.Interfaces
 {
     /// <summary>
     /// Interface responsável pelo TiposEventoRepository
     /// </summary>
-    interface ITiposEventoRepository
+    interface ITiposChamadoRepository
     {
         /// <summary>
         /// Lista todos os tipos de eventos
         /// </summary>
         /// <returns>Uma lista de tipos de eventos</returns>
-        List<TiposEvento> Listar();
+        List<TiposChamado> Listar();
 
         /// <summary>
-        /// Busca um tipo de evento através do ID
+        /// Busca um tipo de Chamado através do ID
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será buscado</param>
-        /// <returns>Um tipo de evento buscado</returns>
-        TiposEvento BuscarPorId(int id);
+        /// <param name="id">ID do tipo de Chamado que será buscado</param>
+        /// <returns>Um tipo de Chamado buscado</returns>
+        TiposChamado BuscarPorId(int id);
 
         /// <summary>
-        /// Cadastra um novo tipo de evento
+        /// Cadastra um novo tipo de Chamado
         /// </summary>
-        /// <param name="novoTipoEvento">Objeto novoTipoEvento que será cadastrado</param>
-        void Cadastrar(TiposEvento novoTipoEvento);
+        /// <param name="novoTipoEvento">Objeto novoTipoChamado que será cadastrado</param>
+        void Cadastrar(TiposChamado novoTipoChamado);
 
         /// <summary>
-        /// Atualiza um tipo de evento existente
+        /// Atualiza um tipo de Chamado existente
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será atualizado</param>
-        /// <param name="tipoEventoAtualizado">Objeto com as novas informações</param>
-        void Atualizar(int id, TiposEvento tipoEventoAtualizado);
+        /// <param name="id">ID do tipo de Chamado que será atualizado</param>
+        /// <param name="tipoChamadoAtualizado">Objeto com as novas informações</param>
+        void Atualizar(int id, TiposChamado tipoChamadoAtualizado);
 
         /// <summary>
-        /// Deleta um tipo de evento existente
+        /// Deleta um tipo de Chamado existente
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será deletado</param>
+        /// <param name="id">ID do tipo de Chamado que será deletado</param>
         void Deletar(int id);
     }
 }

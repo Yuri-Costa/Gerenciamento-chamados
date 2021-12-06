@@ -1,7 +1,7 @@
 ﻿using senai_gufi_webApi.Domains;
 using System.Collections.Generic;
 
-namespace senai_gufi_webApi.Interfaces
+namespace senai_chamado_webApi.Interfaces
 {
     /// <summary>
     /// Interface responsável pelo PresencaRepository

@@ -16,7 +16,7 @@ namespace senai_chamado_webApi.Repositories
         /// <summary>
         /// Objeto contexto por onde serão chamados os métodos do EF Core
         /// </summary>
-        GufiContext ctx = new GufiContext();
+        ChamadoContext ctx = new ChamadoContext();
 
         /// <summary>
         /// Altera o status de uma presença
@@ -27,10 +27,10 @@ namespace senai_chamado_webApi.Repositories
         {
             // Busca a primeira presença para o ID informado e armazena no objeto presencaBuscada
             Presenca presencaBuscada = ctx.Presencas
-                // Adiciona na busca as informações do usuário que participa do evento
+                // Adiciona na busca as informações do usuário que participa do Chamado
                 .Include(p => p.IdUsuarioNavigation)
-                // Adiciona na busca as informações do evento que o usuário participa
-                .Include(p => p.IdEventoNavigation)
+                // Adiciona na busca as informações do Chamado que o usuário participa
+                .Include(p => p.IdChamadoNavigation)
                 .FirstOrDefault(p => p.IdPresenca == id);
 
             // Verifica qual o status foi informado
@@ -81,11 +81,11 @@ namespace senai_chamado_webApi.Repositories
                 presencaBuscada.IdUsuario = presencaAtualizada.IdUsuario;
             }
 
-            // Verifica se o id do evento foi informado
+            // Verifica se o id do Chamado foi informado
             if (presencaAtualizada.IdEvento != null)
             {
                 // Atribui os novos valores ao campos existentes
-                presencaBuscada.IdEvento = presencaAtualizada.IdEvento;
+                presencaBuscada.IdChamado = presencaAtualizada.IdChamado;
             }
 
             // Verifica se a situação da presença foi informada
@@ -179,12 +179,12 @@ namespace senai_chamado_webApi.Repositories
         {
             // Retorna uma lista com todas as informações das presenças
             return ctx.Presencas
-                // Adiciona na busca as informações do evento que o usuário participa
-                .Include(p => p.IdEventoNavigation)
-                // Adiciona na busca as informações do Tipo de Evento (categoria) deste evento
-                .Include(p => p.IdEventoNavigation.IdTipoEventoNavigation)
+                // Adiciona na busca as informações do Chamado que o usuário participa
+                .Include(p => p.IdChamadoNavigation)
+                // Adiciona na busca as informações do Tipo de Chamado (categoria) deste Chamado
+                .Include(p => p.IdChamadoNavigation.IdTipoChamadoNavigation)
                 // Adiciona na busca as informações da Instituição deste evento
-                .Include(p => p.IdEventoNavigation.IdInstituicaoNavigation)
+                .Include(p => p.IdChamadoNavigation.IdInstituicaoNavigation)
                 // Estabelece como parâmetro de consulta o ID do usuário recebido
                 .Where(p => p.IdUsuario == id)
                 .ToList();

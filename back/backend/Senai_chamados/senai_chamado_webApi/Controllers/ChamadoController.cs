@@ -15,7 +15,7 @@ namespace senai_gufi_webApi.Controllers
     [Produces("application/json")]
 
     // Define que a rota de uma requisição será no formato dominio/api/nomeController
-    // ex: http://localhost:5000/api/eventos
+    // ex: http://localhost:5000/api/chamados
     [Route("api/[controller]")]
 
     // Define que é um controlador de API
@@ -26,29 +26,23 @@ namespace senai_gufi_webApi.Controllers
     public class EventosController : ControllerBase
     {
         /// <summary>
-        /// Objeto _eventoRepository que irá receber todos os métodos definidos na interface IEventoRepository
+        /// Objeto _eventoRepository que irá receber todos os métodos definidos na interface 
         /// </summary>
         private IEventoRepository _eventoRepository { get; set; }
 
-        /// <summary>
-        /// Instancia o objeto _eventoRepository para que haja a referência aos métodos no repositório
-        /// </summary>
+       
         public EventosController()
         {
-            _eventoRepository = new EventoRepository();
+            _chamadoRepository = new chamadoRepository();
         }
 
-        /// <summary>
-        /// Lista todos os eventos
-        /// </summary>
-        /// <returns>Uma lista de eventos e um status code 200 - Ok</returns>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
                 // Retorna a resposta da requisição fazendo a chamada para o método
-                return Ok(_eventoRepository.Listar());
+                return Ok(_chamadoRepository.Listar());
             }
             catch (Exception erro)
             {
@@ -56,18 +50,14 @@ namespace senai_gufi_webApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Busca um evento através do ID
-        /// </summary>
-        /// <param name="id">ID do evento que será buscado</param>
-        /// <returns>Um evento buscado e um status code 200 - Ok</returns>
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             try
             {
                 // Retora a resposta da requisição fazendo a chamada para o método
-                return Ok(_eventoRepository.BuscarPorId(id));
+                return Ok(_chamadoRepository.BuscarPorId(id));
             }
             catch (Exception erro)
             {
@@ -76,19 +66,19 @@ namespace senai_gufi_webApi.Controllers
         }
 
         /// <summary>
-        /// Cadastra um novo evento
+        /// Cadastra um novo Chamado
         /// </summary>
-        /// <param name="novoEvento">Objeto novoEvento que será cadastrado</param>
+        /// <param name="novoChamado">Objeto novoChamado que será cadastrado</param>
         /// <returns>Um status code 201 - Created</returns>
         // Define que somente o administrador pode acessar o método
         [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Post(Evento novoEvento)
+        public IActionResult Post(Chamado novoChamado)
         {
             try
             {
                 // Faz a chamada para o método
-                _eventoRepository.Cadastrar(novoEvento);
+                _eventoRepository.Cadastrar(novoChamado);
 
                 // Retorna um status code
                 return StatusCode(201);
@@ -103,17 +93,17 @@ namespace senai_gufi_webApi.Controllers
         /// Atualiza um evento existente
         /// </summary>
         /// <param name="id">ID do evento que será atualizado</param>
-        /// <param name="eventoAtualizado">Objeto com as novas informações</param>
+        /// <param name="ChamadoAtualizado">Objeto com as novas informações</param>
         /// <returns>Um status code 204 - No Content</returns>
         // Define que somente o administrador pode acessar o método
         [Authorize(Roles = "1")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Evento eventoAtualizado)
+        public IActionResult Put(int id, Evento ChamadoAtualizado)
         {
             try
             {
                 // Faz a chamada para o método
-                _eventoRepository.Atualizar(id, eventoAtualizado);
+                _chamadoRepository.Atualizar(id, ChamadoAtualizado);
 
                 // Retorna um status code
                 return StatusCode(204);
@@ -125,9 +115,9 @@ namespace senai_gufi_webApi.Controllers
         }
 
         /// <summary>
-        /// Deleta um evento existente
+        /// Deleta um Chamado existente
         /// </summary>
-        /// <param name="id">ID do evento que será deletado</param>
+        /// <param name="id">ID do Chamado que será deletado</param>
         /// <returns>Um status code 204 - No Content</returns>
         // Define que somente o administrador pode acessar o método
         [Authorize(Roles = "1")]
@@ -137,7 +127,7 @@ namespace senai_gufi_webApi.Controllers
             try
             {
                 // Faz a chamada para o método
-                _eventoRepository.Deletar(id);
+                _chamadoRepository.Deletar(id);
 
                 // Retorna um status code
                 return StatusCode(204);
