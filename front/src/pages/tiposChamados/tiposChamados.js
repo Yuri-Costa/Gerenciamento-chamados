@@ -20,12 +20,12 @@ class TiposChamados extends Component{
         }
     }
 
-    // Função responsável por fazer a requisição e trazer a lista de tipos eventos
+    // Função responsável por fazer a requisição e trazer a lista de tipos Chamado
     buscarTiposChamados = () => {
         console.log('agora vamos fazer a chamada para API para atualizar a lista');
 
         // Faz a chamada para a API usando o fetch
-        fetch('http://localhost:5000/api/tiposeventos', {
+        fetch('http://localhost:5000/api/tiposChamados', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -43,8 +43,8 @@ class TiposChamados extends Component{
         // .then(resposta => {
         //     // Caso a requisição retorne um status code 200,
         //     if (resposta.status === 200) {
-        //         // Atualiza o state listaTipoEventos com o corpo da requisição após o método .json()
-        //         resposta.json().then(resposta => this.setState({ listaTiposEventos : resposta }));
+        //         // Atualiza o state listaTipoChamados com o corpo da requisição após o método .json()
+        //         resposta.json().then(resposta => this.setState({ listaTiposChamados : resposta }));
         //     };
         // })
 
@@ -57,7 +57,7 @@ class TiposChamados extends Component{
             return resposta.json();
         })
         
-        // e atualiza o state listaTiposEventos com os dados obtidos
+        // e atualiza o state listaTiposChamados com os dados obtidos
         .then(resposta => this.setState({ listaTiposChamados : resposta }))
         // .then(data => console.log(data))
         
@@ -65,7 +65,7 @@ class TiposChamados extends Component{
         .catch((erro) => console.log(erro))
     };
 
-    // Chama a função buscarTiposEventos() assim que o componente é renderizado
+    // Chama a função buscarTiposChamados() assim que o componente é renderizado
     componentDidMount(){
         this.buscarTiposChamados();
     }
@@ -76,14 +76,14 @@ class TiposChamados extends Component{
         console.log(this.state.titulo)
     };
 
-    // Função responsável por cadastrar um Tipo de Evento
+    // Função responsável por cadastrar um Tipo de Chamado
     cadastrarTipoChamado = (event) => {
         // Ignora o comportamento padrão do navegador
         event.preventDefault();
 
-        // Caso algum Tipo de Evento seja selecionado para edição,
-        if (this.state.idTipoEventoAlterado !== 0) {
-            // faz a chamada para a API usando fetch e passando o ID do Tipo de Evento que será atualizado na URL da requisição
+        // Caso algum Tipo de Chamado seja selecionado para edição,
+        if (this.state.idTipoChamadoAlterado !== 0) {
+            // faz a chamada para a API usando fetch e passando o ID do Tipo de Chamado que será atualizado na URL da requisição
             fetch('http://localhost:5000/api/tiposchamados/' + this.state.idTipoChamadoAlterado,
             {
                 // Define o método da requisição ( PUT )
@@ -105,7 +105,7 @@ class TiposChamados extends Component{
                 // Caso a requisição retorne um status code 204,
                 if (resposta.status === 204) {
                     console.log(
-                        // Exibe no console do navegador a mensagem 'Tipo de Evento x atualizado!', onde x é o ID do Tipo de Evento atualizado
+                        // Exibe no console do navegador a mensagem 'Tipo de Chamado x atualizado!', onde x é o ID do Tipo de Chamado atualizado
                         'Tipo de Chamado ' + this.state.idTipoChamadoAlterado + ' atualizado!',
                         // e informa qual é seu novo título
                         'Seu novo título agora é: ' + this.state.titulo
@@ -113,7 +113,7 @@ class TiposChamados extends Component{
                 };
             })
 
-            // Então, atualiza a lista de Tipos de Eventos
+            // Então, atualiza a lista de Tipos de Chamados
             // sem o usuário precisar executar outra ação
             .then(this.buscarTiposChamados)
 
@@ -121,7 +121,7 @@ class TiposChamados extends Component{
             .then(this.limparCampos)
         }
 
-        // Caso nenhum Tipo de Evento tenha sido selecionado para editar, realiza o cadastro com a requisição abaixo
+        // Caso nenhum Tipo de Chamado tenha sido selecionado para editar, realiza o cadastro com a requisição abaixo
         else {
             // Faz a chamada para a API usando fetch
             fetch('http://localhost:5000/api/tiposchamados',
@@ -140,8 +140,8 @@ class TiposChamados extends Component{
                 }
             })
 
-            // Exibe no console do navegador a mensagem 'Tipo de Evento cadastrado!'
-            .then(console.log('Tipo de Evento cadastrado!'))
+            // Exibe no console do navegador a mensagem 'Tipo de Chamado cadastrado!'
+            .then(console.log('Tipo de Chamado cadastrado!'))
 
             // Caso ocorra algum erro,
             // exibe este erro no console do navegador
@@ -156,18 +156,18 @@ class TiposChamados extends Component{
         }
     };
 
-    // Recebe um tipo de evento da lista
-    buscarTipoEventoPorId = (tipoChamado) => {
+    // Recebe um tipo de Chamado da lista
+    buscarTipoChamadoPorId = (tipoChamado) => {
         this.setState({
-            // Atualiza o state idTipoEventoAlterado com o valor do ID do Tipo de Evento recebido
+            // Atualiza o state idTipoChamadoAlterado com o valor do ID do Tipo de Chamado recebido
             idTipoChamadoAlterado : tipoChamado.idTipoChamado,
-            // e o state titulo com o valor do titulo do Tipo de Evento recebido
+            // e o state titulo com o valor do titulo do Tipo de Chamado recebido
             titulo : tipoChamado.tituloTipoChamado
         }, () => {
             console.log(
-                // Exibe no console do navegador o valor do ID do Tipo de Evento recebido
-                'O Tipo de Evento ' + tipoChamado.idTipoChamado + ' foi selecionado, ',
-                // o valor do state idTipoEventoAlterado
+                // Exibe no console do navegador o valor do ID do Tipo de Chamado recebido
+                'O Tipo de Chamado ' + tipoChamado.idTipoChamado + ' foi selecionado, ',
+                // o valor do state idTipoChamadoAlterado
                 'agora o valor do state idTipoChamadoAlterado é: ' + this.state.idTipoChamadoAlterado,
                 // e o valor do state titulo
                 'e o valor do state titulo é: ' + this.state.titulo
@@ -175,10 +175,10 @@ class TiposChamados extends Component{
         });
     };
 
-    // Função responsável por excluir um Tipo de Evento
+    // Função responsável por excluir um Tipo de Chamado
     excluirTipoChamado = (tipoChamado) => {
-        // Exibe no console do navegador o ID do Tipo de Evento recebido
-        console.log('O Tipo de Chamado ' + tipoChamado.idTipoEvento + ' foi selecionado')
+        // Exibe no console do navegador o ID do Tipo de Chamado recebido
+        console.log('O Tipo de Chamado ' + tipoChamado.idTipoChamado + ' foi selecionado')
 
         // Faz a chamada para a API usando fetch passando o ID do Tipo de Evento recebido na URL da requisição
         fetch('http://localhost:5000/api/tiposchamado/' + tipoChamado.idTipoChamado,
@@ -233,8 +233,8 @@ class TiposChamados extends Component{
 
                 <main className="conteudoPrincipal">
                     <section className="conteudoPrincipal-cadastro">
-                        <Titulo tituloSeccao="Lista Tipos Eventos" />
-                        {/* <h2 className="conteudoPrincipal-cadastro-titulo">Tipos de Eventos</h2> */}
+                        <Titulo tituloSeccao="Lista TiposChamado" />
+                        {/* <h2 className="conteudoPrincipal-cadastro-titulo">Tipos de Chamados</h2> */}
                         <div className="container" id="conteudoPrincipal-lista">
                             <table id="tabela-lista">
                             <thead>
@@ -253,11 +253,11 @@ class TiposChamados extends Component{
                                                     <td>{tipoChamado.idTipoChamado}</td>
                                                     <td>{tipoChamado.tituloTipoChamado}</td>
 
-                                                    {/* Faz a chamada da função buscarTipoEventoPorId passando o Tipo de Evento selecionado  */}
-                                                    <td><button onClick={() => this.buscarTipoEventoPorId(tipoChamado)} >Editar</button>
+                                                    {/* Faz a chamada da função buscarTipoChamadoPorId passando o Tipo de Chamado selecionado  */}
+                                                    <td><button onClick={() => this.buscarTipoChamadoPorId(tipoChamado)} >Editar</button>
 
-                                                    {/* Faz a chamada da função excluirTipoEvento passando o Tipo de Evento selecionado  */}
-                                                    <button onClick={() => this.excluirTipoEvento(tipoChamado)} >Excluir</button></td>
+                                                    {/* Faz a chamada da função excluirTipoChamado passando o Tipo de Chamado selecionado  */}
+                                                    <button onClick={() => this.excluirTipoChamado(tipoChamado)} >Excluir</button></td>
                                                 </tr>
                                             );
                                         } )
@@ -268,16 +268,16 @@ class TiposChamados extends Component{
                     </section>
 
                     <section className="container" id="conteudoPrincipal-cadastro">
-                        {/* Cadastro de Tipo de Evento */}
-                        <Titulo tituloSeccao="Cadastro de Tipos Eventos" />
-                        {/* <h2 className="conteudoPrincipal-cadastro-titulo">Cadastro de Tipo de Evento</h2> */}
+                        {/* Cadastro de Tipo de Chamado */}
+                        <Titulo tituloSeccao="Cadastro de Tipos Chamados" />
+                        {/* <h2 className="conteudoPrincipal-cadastro-titulo">Cadastro de Tipo de Chamado</h2> */}
 
-                        {/* Formulário de cadastro de Tipo de Evento */}
+                        {/* Formulário de cadastro de Tipo de Chamado */}
                         <form onSubmit={this.cadastrarTipoChamado}>
                             <div className="container">
                                 <input 
                                     type="text"
-                                    id="nome-tipo-evento"
+                                    id="nome-tipo-chamado"
                                     value={this.state.titulo}
                                     onChange={this.atualizaEstadoTitulo}
                                     placeholder="Título do Tipo de Chamado"
@@ -286,7 +286,7 @@ class TiposChamados extends Component{
                                 {/* Altera o texto do botão de acordo com a operação ( edição ou cadastro ) usando if ternário */}
 
                                 {/* {
-                                    this.state.idTipoEventoAlterado === 0 ?
+                                    this.state.idTipoChamadoAlterado === 0 ?
                                     <button type="submit">Cadastrar</button> :
                                     <button type="submit">Editar</button>
                                 } */}
@@ -314,7 +314,7 @@ class TiposChamados extends Component{
                                     this.state.idTipoChamadoAlterado !== 0 &&
                                     <div>
                                         <p>O tipo de Chamado <strong>{this.state.idTipoChamadoAlterado}</strong> está sendo editado </p>
-                                        <p>Pressione o botão Cancelar caso queira abortar a operação antes de cadastrar um novo tipo de evento</p>
+                                        <p>Pressione o botão Cancelar caso queira abortar a operação antes de cadastrar um novo tipo de Chamado</p>
                                     </div>
                                 }
 

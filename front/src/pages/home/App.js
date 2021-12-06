@@ -13,7 +13,7 @@ function App() {
     <div>
       <header className="cabecalhoPrincipal">
         <div className="container">
-          <Link to="/"><img src={logo} alt="logo da Gufi" /></Link>
+          <Link to="/"><img src={logo} alt="logo Chamado" /></Link>
 
           <nav className="cabecalhoPrincipal-nav">
             <Link to="/">Home</Link>
@@ -33,8 +33,8 @@ function App() {
       </section>
 
       <main className="conteudoPrincipal">
-        <section id="conteudoPrincipal-eventos">
-          <h1 id="conteudoPrincipal-eventos-titulo">Fazer chamados</h1>
+        <section id="conteudoPrincipal-chamado">
+          <h1 id="conteudoPrincipal-chamados-titulo">Fazer chamados</h1>
           <div className="container">
             <nav>
               <ul className="conteudoPrincipal-dados">
@@ -46,7 +46,7 @@ function App() {
                   <button>conectar</button>
                 </li>
 
-                <li className="conteudoPrincipal-dados-link eventos">
+                <li className="conteudoPrincipal-dados-link chamados">
                   <h2>recepção</h2>
                   <p>
                   clique para realizar um chamado para a recepção.
@@ -54,7 +54,7 @@ function App() {
                   <button>conectar</button>
                 </li>
 
-                <li className="conteudoPrincipal-dados-link eventos">
+                <li className="conteudoPrincipal-dados-link chamados">
                   <h2>limpeza</h2>
                   <p>
                   clique para realizar um chamado para a equipe de limpeza.

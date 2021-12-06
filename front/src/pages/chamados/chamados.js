@@ -1,7 +1,7 @@
 import { React, Component } from 'react';
 import axios from 'axios';
 import "../../assets/css/style.css";
-import "../../assets/css/eventos.css";
+import "../../assets/css/chamado.css";
 import { Link } from 'react-router-dom';
 import "../../assets/css/flexbox.css";
 import "../../assets/css/reset.css";
@@ -11,7 +11,7 @@ import logo from "../../assets/img/logo.png";
 
 
 
-export default class Eventos extends Component {
+export default class Chamados extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -70,7 +70,7 @@ export default class Eventos extends Component {
         .catch(erro => console.log(erro));
     };
 
-    // Função responsável por fazer a requisição e trazer a lista de eventos
+    // Função responsável por fazer a requisição e trazer a lista de Chamados
     buscarChamados = () => {
         // Faz a chamada para a API usando o axios
         axios('http://localhost:5000/api/Chamados', {
@@ -98,7 +98,7 @@ export default class Eventos extends Component {
         this.buscarChamados();
     };
 
-    // Função que faz a chamada para a API para cadastrar um evento
+    // Função que faz a chamada para a API para cadastrar um Chamado
     cadastrarChamado = (event) => {
         // Ignora o comportamento padrão do navegador
         event.preventDefault();
@@ -118,7 +118,7 @@ export default class Eventos extends Component {
         };
 
         // Define a URL e o corpo da requisição
-        axios.post('http://localhost:5000/api/eventos', evento, {
+        axios.post('http://localhost:5000/api/chamado', chamado, {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -164,7 +164,7 @@ export default class Eventos extends Component {
                         {/* Lista de Eventos */}
                         <header className="cabecalhoPrincipal">
         <div className="container">
-          <Link to="/"><img src={logo} alt="logo da Gufi" /></Link>
+          <Link to="/"><img src={logo} alt="logo da Chamado" /></Link>
 
           <nav className="cabecalhoPrincipal-nav">
             <Link to="/">Home</Link>
@@ -192,13 +192,13 @@ export default class Eventos extends Component {
                                 {/* Preenche o corpo da tabela usando a função map() */}
 
                                 {
-                                    this.state.listaEventos.map( evento => {
+                                    this.state.listaEventos.map( chamado => {
                                         return(
-                                            <tr key={evento.idEvento}>
-                                                <td>{evento.idEvento}</td>
-                                                <td>{evento.nomeEvento}</td>
-                                                <td>{evento.descricao}</td>
-                                                <td>{Intl.DateTimeFormat("pt-BR").format(new Date(evento.dataEvento))}</td>
+                                            <tr key={chamado.idChamado}>
+                                                <td>{chamado.idChamado}</td>
+                                                <td>{chamado.nomeChamado}</td>
+                                                <td>{chamado.descricao}</td>
+                                                <td>{Intl.DateTimeFormat("pt-BR").format(new Date(chamado.dataChamado))}</td>
 
                                                 {/* 
                                                 
@@ -207,9 +207,9 @@ export default class Eventos extends Component {
                                                 
                                                 */}
 
-                                                <td>{evento.acessoLivre ? 'urgente' : 'não urgente'}</td>
-                                                <td>{evento.idTipoEventoNavigation.tituloTipoEvento}</td>
-                                                <td>{evento.idInstituicaoNavigation.nomeFantasia}</td>
+                                                <td>{chamado.acessoLivre ? 'urgente' : 'não urgente'}</td>
+                                                <td>{chamado.idTipoChamadoNavigation.tituloTipoChamado}</td>
+                                                <td>{chamado.idInstituicaoNavigation.nomeFantasia}</td>
                                             </tr>
                                         );
                                     } )
@@ -222,7 +222,7 @@ export default class Eventos extends Component {
                         {/* Cadastro de Eventos */}
                         <h2>fazer chamado</h2>
                         {/* Faz a chamada para a função de cadastro quando botão é pressionado */}
-                        <form onSubmit={this.cadastrarEvento}>
+                        <form onSubmit={this.cadastrarChamado}>
                             <div style={{ display : 'flex', flexDirection : 'column', width : '30vw' }}>
 
                                 <input 
@@ -251,9 +251,9 @@ export default class Eventos extends Component {
                                 <input 
                                     // Data do evento
                                     type="date"
-                                    name="dataEvento"
+                                    name="dataChamado"
                                     // Define que o valor do input é o valor do state
-                                    value={this.state.dataEvento}
+                                    value={this.state.dataChamado}
                                     // Chama a função para atualizar o state cada vez que há alteração no input
                                     onChange={this.atualizaStateCampo}
                                 />
@@ -271,10 +271,10 @@ export default class Eventos extends Component {
                                 </select>
 
                                 <select
-                                    // Tipo de Evento
-                                    name="idTipoEvento"
+                                    // Tipo de Chamado
+                                    name="idTipoChamado"
                                     // Define que o valor do input é o valor do state
-                                    value={this.state.idTipoEvento}
+                                    value={this.state.idTipoChamado}
                                     // Chama a função para atualizar o state cada vez que há alteração no input
                                     onChange={this.atualizaStateCampo}
                                 >
@@ -290,10 +290,10 @@ export default class Eventos extends Component {
                                         // Percorre a lista de Tipos Eentos e retorna uma opção para cada tema
                                         // definindo o valor como o seu próprio ID
 
-                                        this.state.listaTiposEventos.map( tema => {
+                                        this.state.listaTiposChamados.map( tema => {
                                             return(
-                                                <option key={tema.idTipoEvento} value={tema.idTipoEvento}>
-                                                    {tema.tituloTipoEvento}
+                                                <option key={tema.idTipoChamado} value={tema.idTipoChamado}>
+                                                    {tema.tituloTipoChamado}
                                                 </option>
                                             );
                                         } )

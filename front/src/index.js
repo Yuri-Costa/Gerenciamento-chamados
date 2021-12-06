@@ -47,9 +47,9 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} /> {/* Home */}
         <Route path="/login" component={Login} /> {/* Login */}
-        <PermissaoAdm path="/tiposchamados" component={TiposUsuarios} /> {/* Tipos Eventos */}
-        <PermissaoAdm path="/tiposchamados" component={TiposEventos} /> {/* Tipos Eventos */}
-        <Route path="/eventos" component={Eventos} /> {/* Eventos */}
+        <PermissaoAdm path="/tiposchamados" component={TiposUsuarios} /> {/* Tipos Chamados*/}
+        <PermissaoAdm path="/tiposchamados" component={TiposChamados} /> {/* Tipos Chamados */}
+        <Route path="/chamado" component={Chamados} /> {/* Chamados */}
         <Route exact path="/notfound" component={NotFound} /> {/* Not Found */}
         <Redirect to = "/notfound"/> {/* Redireciona para NotFound caso não encontre nenhuma rota */}
       </Switch>

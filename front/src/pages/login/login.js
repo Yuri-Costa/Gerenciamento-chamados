@@ -58,7 +58,7 @@ class Login extends Component {
                 // Verifica se o tipo de usuário logado é Administrador
                 // Se for, redireciona para a página de Tipos Eventos
                 if (parseJwt().role === '1') {
-                    this.props.history.push('/tiposeventos');
+                    this.props.history.push('/tiposChamados');
                     console.log('estou logado: ' + usuarioAutenticado());
                 }
 
