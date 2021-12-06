@@ -1,7 +1,7 @@
 import { React, Component } from 'react';
 import axios from 'axios';
 import "../../assets/css/style.css";
-import "../../assets/css/chamado.css";
+import "../../assets/css/chamados.css";
 import { Link } from 'react-router-dom';
 import "../../assets/css/flexbox.css";
 import "../../assets/css/reset.css";
@@ -118,7 +118,7 @@ export default class Chamados extends Component {
         };
 
         // Define a URL e o corpo da requisição
-        axios.post('http://localhost:5000/api/chamado', chamado, {
+        axios.post('http://localhost:5000/api/chamados', chamados, {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }

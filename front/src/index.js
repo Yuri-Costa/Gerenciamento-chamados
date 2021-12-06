@@ -7,8 +7,8 @@ import './index.css';
 
 import App from './pages/home/App';
 import TiposUsuarios from './pages/tiposUsuarios/tiposUsuarios';
-import TiposChamados from './pages/tiposEventos/tiposEventos';
-import Chamados from './pages/eventos/eventos';
+import TiposChamados from './pages/tiposChamados/tiposChamados';
+import Chamados from './pages/chamados/chamados';
 import Login from './pages/login/login';
 import NotFound from './pages/notFound/notFound';
 
