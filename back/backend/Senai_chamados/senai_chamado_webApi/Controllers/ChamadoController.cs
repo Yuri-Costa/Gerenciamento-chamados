@@ -5,7 +5,7 @@ using senai_chamado_webApi.Interfaces;
 using senai_chamado_webApi.Repositories;
 using System;
 
-namespace senai_gufi_webApi.Controllers
+namespace senai_chamado_webApi.Controllers
 {
     /// <summary>
     /// Controller responsável pelos endpoints (URLs) referentes aos eventos
@@ -23,15 +23,15 @@ namespace senai_gufi_webApi.Controllers
 
     // Define que qualquer usuário autenticado pode acessar aos métodos
     // [Authorize]
-    public class EventosController : ControllerBase
+    public class ChamadosController : ControllerBase
     {
         /// <summary>
         /// Objeto _eventoRepository que irá receber todos os métodos definidos na interface 
         /// </summary>
-        private IEventoRepository _eventoRepository { get; set; }
+        private IChamadoRepository _chamadoRepository { get; set; }
 
        
-        public EventosController()
+        public ChamadosController()
         {
             _chamadoRepository = new chamadoRepository();
         }
@@ -90,15 +90,15 @@ namespace senai_gufi_webApi.Controllers
         }
 
         /// <summary>
-        /// Atualiza um evento existente
+        /// Atualiza um Chamado existente
         /// </summary>
-        /// <param name="id">ID do evento que será atualizado</param>
+        /// <param name="id">ID doChamado que será atualizado</param>
         /// <param name="ChamadoAtualizado">Objeto com as novas informações</param>
         /// <returns>Um status code 204 - No Content</returns>
         // Define que somente o administrador pode acessar o método
         [Authorize(Roles = "1")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Evento ChamadoAtualizado)
+        public IActionResult Put(int id, Chamado ChamadoAtualizado)
         {
             try
             {

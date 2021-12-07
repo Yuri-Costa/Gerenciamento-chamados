@@ -26,7 +26,7 @@ using senai_chamado_webApi.Domains;
 // Nome do arquivo/classe de contexto:          -Context ChamadoContext
 
 
-namespace senai_gufi_webApi.Contexts
+namespace senai_chamados_webApi.Contexts
 {
     public partial class ChamadoContext : DbContext
     {
@@ -59,20 +59,20 @@ namespace senai_gufi_webApi.Contexts
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
-            modelBuilder.Entity<Evento>(entity =>
+            modelBuilder.Entity<Chamado>(entity =>
             {
-                entity.HasKey(e => e.IdEvento)
-                    .HasName("PK__eventos__C8DC7BDA9E2E3C6A");
+                entity.HasKey(e => e.IdChamado)
+                    .HasName("PK__chamado__C8DC7BDA9E2E3C6A");
 
                 entity.ToTable("Chamado");
 
-                entity.Property(e => e.IdEvento).HasColumnName("idEvento");
+                entity.Property(e => e.IdChamado).HasColumnName("idEvento");
 
                 entity.Property(e => e.AcessoLivre)
                     .HasColumnName("acessoLivre")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.DataEvento)
+                entity.Property(e => e.DataChamado)
                     .HasColumnType("date")
                     .HasColumnName("dataChamado");
 
@@ -85,18 +85,18 @@ namespace senai_gufi_webApi.Contexts
 
                 entity.Property(e => e.IdTipoEvento).HasColumnName("idTipoChamados");
 
-                entity.Property(e => e.NomeEvento)
+                entity.Property(e => e.NomeChamado)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("nomeChamado");
 
                 entity.HasOne(d => d.IdInstituicaoNavigation)
-                    .WithMany(p => p.Eventos)
+                    .WithMany(p => p.Chamados)
                     .HasForeignKey(d => d.IdInstituicao)
                     .HasConstraintName("FK__Chamado__idInsti__33D4B598");
 
-                entity.HasOne(d => d.IdTipoEventoNavigation)
+                entity.HasOne(d => d.IdTipoChamadoNavigation)
                     .WithMany(p => p.Chamados)
                     .HasForeignKey(d => d.IdTipoChamado)
                     .HasConstraintName("FK__Chamado__idTipoE__32E0915F");
@@ -159,7 +159,7 @@ namespace senai_gufi_webApi.Contexts
                     .IsUnicode(false)
                     .HasColumnName("situacao");
 
-                entity.HasOne(d => d.IdEventoNavigation)
+                entity.HasOne(d => d.IdChamadoNavigation)
                     .WithMany(p => p.Presencas)
                     .HasForeignKey(d => d.IdChamado)
                     .HasConstraintName("FK__presencas__idEve__38996AB5");
@@ -173,16 +173,16 @@ namespace senai_gufi_webApi.Contexts
             modelBuilder.Entity<TiposChamado>(entity =>
             {
                 entity.HasKey(e => e.IdTipoChamado)
-                    .HasName("PK__tiposEve__09EED93A4CF8B927");
+                    .HasName("PK__tiposChamado__09EED93A4CF8B927");
 
                 entity.ToTable("tiposChamados");
 
-                entity.HasIndex(e => e.TituloTipoChamado, "UQ__tiposEve__D2A1CBBB7A7E4B6D")
+                entity.HasIndex(e => e.TituloTipoChamado, "UQ__tiposChamado__D2A1CBBB7A7E4B6D")
                     .IsUnique();
 
                 entity.Property(e => e.IdTipoChamado).HasColumnName("idTipoChamado");
 
-                entity.Property(e => e.TituloTipoEvento)
+                entity.Property(e => e.TituloTipoChamado)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false)

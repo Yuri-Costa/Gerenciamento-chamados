@@ -41,10 +41,10 @@ namespace senai_chamado_webApi.Interfaces
         void Deletar(int id);
 
         /// <summary>
-        /// Lista todos os eventos que um determinado usuário participa
+        /// Lista todos os Chamados que um determinado usuário participa
         /// </summary>
-        /// <param name="id">ID do usuário que participa dos eventos listados</param>
-        /// <returns>Uma lista de presenças com os dados dos eventos</returns>
+        /// <param name="id">ID do usuário que participa dos Chamados listados</param>
+        /// <returns>Uma lista de presenças com os dados dos Chamados</returns>
         List<Presenca> ListarMinhas(int id);
 
         /// <summary>

@@ -60,7 +60,7 @@ namespace senai_chamado_webApi.Controllers
         /// Busca um tipo de evento através do ID
         /// </summary>
         /// <param name="id">ID do tipo de evento que será buscado</param>
-        /// <returns>Um tipo de evento buscado e um status code 200 - Ok</returns>
+        /// <returns>Um tipo de Chamado buscado e um status code 200 - Ok</returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -76,9 +76,9 @@ namespace senai_chamado_webApi.Controllers
         }
 
         /// <summary>
-        /// Cadastra um novo tipo de evento
+        /// Cadastra um novo tipo de Chamado
         /// </summary>
-        /// <param name="novoTipoChamado">Objeto novoTipoEvento que será cadastrado</param>
+        /// <param name="novoTipoChamado">Objeto novoTipoChamado que será cadastrado</param>
         /// <returns>Um status code 201 - Created</returns>
         [HttpPost]
         public IActionResult Post(TiposChamado novoTipoChamado)
@@ -98,9 +98,9 @@ namespace senai_chamado_webApi.Controllers
         }
 
         /// <summary>
-        /// Atualiza um tipo de evento existente
+        /// Atualiza um tipo de Chamado existente
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será atualizado</param>
+        /// <param name="id">ID do tipo de Chamado que será atualizado</param>
         /// <param name="tipoChamadoAtualizado">Objeto com as novas informações</param>
         /// <returns>Um status code 204 - No Content</returns>
         [HttpPut("{id}")]
@@ -121,9 +121,9 @@ namespace senai_chamado_webApi.Controllers
         }
 
         /// <summary>
-        /// Deleta um tipo de evento existente
+        /// Deleta um tipo de Chamado existente
         /// </summary>
-        /// <param name="id">ID do tipo de evento que será deletado</param>
+        /// <param name="id">ID do tipo de Chamado que será deletado</param>
         /// <returns>Um status code 204 - No Content</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

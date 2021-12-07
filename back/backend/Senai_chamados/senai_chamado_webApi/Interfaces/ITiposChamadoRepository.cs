@@ -9,9 +9,9 @@ namespace senai_chamado_webApi.Interfaces
     interface ITiposChamadoRepository
     {
         /// <summary>
-        /// Lista todos os tipos de eventos
+        /// Lista todos os tipos de Chamados
         /// </summary>
-        /// <returns>Uma lista de tipos de eventos</returns>
+        /// <returns>Uma lista de tipos de Chamados</returns>
         List<TiposChamado> Listar();
 
         /// <summary>

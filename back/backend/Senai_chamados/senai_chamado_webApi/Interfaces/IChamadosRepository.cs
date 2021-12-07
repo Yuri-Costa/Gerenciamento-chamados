@@ -9,13 +9,13 @@ namespace senai_chamado_webApi.Interfaces
     /// <summary>
     /// Interface responsável pelo ChamadoRepository
     /// </summary>
-    interface IEventoRepository
+    interface IChamadoRepository
     {
         /// <summary>
         /// Lista todos os Chamados
         /// </summary>
-        /// <returns>Uma lista de eventos</returns>
-        List<Evento> Listar();
+        /// <returns>Uma lista de Chamados</returns>
+        List<Chamado> Listar();
 
         /// <summary>
         /// Busca um Chamado através do ID

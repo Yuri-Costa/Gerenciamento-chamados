@@ -17,7 +17,7 @@ export default class Chamados extends Component {
         this.state = {
             titulo : '',
             descricao : '',
-            dataEvento : new Date(),
+            dataChamado : new Date(),
             acessoLivre : 0,
             idTipoChamado : 0,
             idInstituicao : 0,
@@ -31,7 +31,7 @@ export default class Chamados extends Component {
    
     buscarTiposChamados = () => {
         
-        axios('http://localhost:5000/api/tiposchamadoss', {
+        axios('http://localhost:5000/api/tiposChamados', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -105,7 +105,7 @@ export default class Chamados extends Component {
         // Define que a requisição está em andamento
         this.setState({ isLoading : true })
 
-        // Define um evento que recebe os dados do state
+        // Define um Chamado que recebe os dados do state
         // É necessário converter o acessoLivre para int, para que o back-end consiga converter para bool ao cadastrar
         // Como o navegador envia o dado como string, não é possível converter para bool implicitamente
         let Chamado = {
@@ -142,7 +142,7 @@ export default class Chamados extends Component {
             this.setState({ isLoading : false });
         })
 
-        // Então, atualiza a lista de Eventos
+        // Então, atualiza a lista de Chamados
         // sem o usuário precisar executar outra ação
         .then(this.buscarChamados)
     };
@@ -192,7 +192,7 @@ export default class Chamados extends Component {
                                 {/* Preenche o corpo da tabela usando a função map() */}
 
                                 {
-                                    this.state.listaEventos.map( chamado => {
+                                    this.state.listaChamados.map( chamado => {
                                         return(
                                             <tr key={chamado.idChamado}>
                                                 <td>{chamado.idChamado}</td>
@@ -249,7 +249,7 @@ export default class Chamados extends Component {
                                 />
 
                                 <input 
-                                    // Data do evento
+                                    // Data do Chamado
                                     type="date"
                                     name="dataChamado"
                                     // Define que o valor do input é o valor do state

@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\senai_chamado_webApi"
+    "\\senai_chamado_webApi",
+    "\\senai_chamado_webApi\\Repositories"
   ],
-  "SelectedNode": "\\senai_chamado_webApi.sln",
+  "SelectedNode": "\\senai_chamado_webApi\\Repositories\\TiposChamadoRepository.cs",
   "PreviewInSolutionExplorer": false
 }

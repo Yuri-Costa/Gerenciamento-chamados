@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace senai_chamado_webApi.Domains
 {
     /// <summary>
-    /// Classe que representa a entidade (tabela) de tipos de eventos
+    /// Classe que representa a entidade (tabela) de tipos de Chamados
     /// </summary>
     public partial class TiposChamado
     {

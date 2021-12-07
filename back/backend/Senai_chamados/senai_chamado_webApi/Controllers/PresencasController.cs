@@ -181,11 +181,11 @@ namespace senai_chamado_webApi.Controllers
         }
 
         /// <summary>
-        /// Inscreve o usuário logado em um evento
+        /// Inscreve o usuário logado em um Chamado
         /// </summary>
         /// <param name="idChamado">ID do evento que o usuário irá se inscrever</param>
         /// <returns>Um status code 201 - Created</returns>
-        /// dominio/api/presencas/inscricao/idEvento
+        /// dominio/api/presencas/inscricao/idChamado
         // Define que somente o usuário comum pode acessar o método
         [Authorize(Roles = "2")]
         [HttpPost("inscricao/{idChamado}")]
@@ -197,7 +197,7 @@ namespace senai_chamado_webApi.Controllers
                 {
                     // Armazena na propriedade IdUsuario da presenca recebida o ID do usuário logado
                     IdUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value),
-                    // Armazena na propriedade IdEvento o ID do evento recebido pela URL
+                    // Armazena na propriedade IdChamado o ID do Chamado recebido pela URL
                     IdChamado = idChamado,
                     // Define a situação da presença como "Não confirmada"
                     Situacao = "Não confirmada"

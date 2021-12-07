@@ -19,7 +19,7 @@ namespace senai_chamado_webApi.Domains
         [Required(ErrorMessage = "A situação da presença é obrigatória!")]
         public string Situacao { get; set; }
 
-        public virtual Evento IdChamadoNavigation { get; set; }
+        public virtual Chamado IdChamadoNavigation { get; set; }
         public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }

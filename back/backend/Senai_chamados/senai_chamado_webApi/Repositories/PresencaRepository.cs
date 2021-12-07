@@ -82,7 +82,7 @@ namespace senai_chamado_webApi.Repositories
             }
 
             // Verifica se o id do Chamado foi informado
-            if (presencaAtualizada.IdEvento != null)
+            if (presencaAtualizada.IdChamado != null)
             {
                 // Atribui os novos valores ao campos existentes
                 presencaBuscada.IdChamado = presencaAtualizada.IdChamado;
